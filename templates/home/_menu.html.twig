@@ -1,0 +1,83 @@
+<style>
+    .menu-content {
+        margin-left:160px;
+        margin-top:-40px;
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+    .menu-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        background: white;
+    }
+
+    .menu-content a:hover {background-color: #2fdab8;color:white;}
+
+    .menu:hover .menu-content {display: block;}
+
+</style>
+
+<div class="ban-top">
+    <div class="container">
+        <div class="top_nav_left">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav menu__list">
+                            <li class="active menu__item menu__item--current"><a class="menu__link" href="{{ path('home') }}">Home <span class="sr-only">(current)</span></a></li>
+                            <li class=" menu__item"><a class="menu__link" href="{{ path('home_aboutus') }}">About</a></li>
+
+                            <li class="menu__item dropdown menu__item--current">
+                                <a class="menu__link" href="#" data-toggle="dropdown" aria-expanded="true">Categories<b class="caret"></b></a>
+                                <ul class="dropdown-menu agile_short_dropdown">
+                                    {% for category in categories %}
+                                    {% if category.parentid == '0' %}
+                                        <li class="menu">
+                                                <a href="#">{{ category.title }}</a>
+                                            <div class="menu-content">
+                                                {% for cat in categories %}
+                                                {% if cat.parentid == category.id %}
+                                                <a href="{{ path('home_products',{'id':cat.id}) }}">{{ cat.title }}</a>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </li>
+
+                                    {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                            <li class=" menu__item"><a class="menu__link" href="{{ path('home_contact') }}">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        <div class="top_nav_right">
+            <div class="wthreecartaits wthreecartaits2 cart cart box_1">
+
+                <a href="{{ path('shopcart_index') }}"><button class="w3view-cart" type="submit" name="submit" value=""><i class="fa fa-cart-arrow-down" aria-hidden="true"></i></button></a>
+
+            </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>

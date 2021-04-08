@@ -1,0 +1,19 @@
+{% extends 'frontbase.html.twig' %}
+
+{% block title %}Mert Bilgisayar Anasayfa{% endblock %}
+
+{% block header %}
+    {{ include ('home/_header.html.twig') }}
+    {{ include ('alerts.html.twig') }}
+{% endblock %}
+
+{% block menu %}
+    {{ include ('home/_menu.html.twig') }}
+
+{% endblock %}
+
+
+{% block main %}{{ setting.aboutus|raw }}
+{% endblock %}
+
+{% block footer %} {{ include ('home/_footer.html.twig') }} {% endblock %}
